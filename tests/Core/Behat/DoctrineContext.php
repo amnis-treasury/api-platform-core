@@ -69,6 +69,8 @@ use ApiPlatform\Tests\Fixtures\TestBundle\Document\NetworkPathDummy as NetworkPa
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\NetworkPathRelationDummy as NetworkPathRelationDummyDocument;
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\Order as OrderDocument;
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\PatchDummyRelation as PatchDummyRelationDocument;
+use ApiPlatform\Tests\Fixtures\TestBundle\Document\PatchOneToManyDummy as PatchOneToManyDummyDocument;
+use ApiPlatform\Tests\Fixtures\TestBundle\Document\PatchOneToManyDummyRelationWithConstructor as PatchOneToManyDummyRelationWithConstructorDocument;
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\Payment as PaymentDocument;
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\Person as PersonDocument;
 use ApiPlatform\Tests\Fixtures\TestBundle\Document\PersonToPet as PersonToPetDocument;
@@ -147,6 +149,8 @@ use ApiPlatform\Tests\Fixtures\TestBundle\Entity\NetworkPathRelationDummy;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\Order;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\PaginationEntity;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\PatchDummyRelation;
+use ApiPlatform\Tests\Fixtures\TestBundle\Entity\PatchOneToManyDummy;
+use ApiPlatform\Tests\Fixtures\TestBundle\Entity\PatchOneToManyDummyRelationWithConstructor;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\Payment;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\Person;
 use ApiPlatform\Tests\Fixtures\TestBundle\Entity\PersonToPet;
@@ -2512,5 +2516,21 @@ final class DoctrineContext implements Context
     private function buildPayment(string $amount)
     {
         return $this->isOrm() ? new Payment($amount) : new PaymentDocument($amount);
+    }
+
+    /**
+     * @return PatchOneToManyDummyDocument|PatchOneToManyDummy
+     */
+    private function buildPatchOneToManyDummy()
+    {
+        return $this->isOrm() ? new PatchOneToManyDummy() : new PatchOneToManyDummyDocument();
+    }
+
+    /**
+     * @return PatchOneToManyDummyRelationWithConstructorDocument|PatchOneToManyDummyRelationWithConstructor
+     */
+    private function buildpatchOneToManyDummyRelationWithConstructor()
+    {
+        return $this->isOrm() ? new PatchOneToManyDummyRelationWithConstructor('Constructor') : new PatchOneToManyDummyRelationWithConstructorDocument('Constructor');
     }
 }
